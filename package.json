@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-when",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Conditional babel preset",
   "license": "MIT",
   "repository": "mastilver/babel-preset-when",
