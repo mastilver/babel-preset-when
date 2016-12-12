@@ -1,0 +1,37 @@
+{
+  "name": "babel-preset-when",
+  "version": "0.0.0",
+  "description": "Conditional babel preset",
+  "license": "MIT",
+  "repository": "mastilver/babel-preset-when",
+  "author": {
+    "name": "Thomas Sileghem",
+    "email": "th.sileghem@gmail.com",
+    "url": "mastilver.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": 4,
+    "rules": {
+      "eqeqeq": "off",
+      "no-eq-null": "off"
+    }
+  }
+}
