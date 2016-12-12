@@ -1,6 +1,5 @@
 'use strict';
 module.exports = function (context, options) {
-
     return Object.keys(options)
         .reduce((prev, key) => {
             const config = options[key][process.env[key]];
