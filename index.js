@@ -9,8 +9,8 @@ module.exports = function (context, options) {
             }
 
             return {
-                plugins: prev.plugins.concat(config.plugins),
-                presets: prev.presets.concat(config.presets)
+                plugins: prev.plugins.concat(config.plugins || []),
+                presets: prev.presets.concat(config.presets || [])
             };
         }, {
             plugins: [],

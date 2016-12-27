@@ -69,3 +69,35 @@ test('combine', t => {
         ]
     });
 });
+
+test('when given no values', t => {
+    process.env.BABEL_TEST_4 = 'true';
+
+    t.deepEqual(fn(null, {
+        BABEL_TEST_4: {
+            true: {}
+        }
+    }), {
+        plugins: [],
+        presets: []
+    });
+});
+
+test('when giving options to preset', t => {
+    process.env.BABEL_TEST_5 = 'true';
+
+    t.deepEqual(fn(null, {
+        BABEL_TEST_4: {
+            true: {
+                presets: [
+                    ['es2015', {modules: false}]
+                ]
+            }
+        }
+    }), {
+        plugins: [],
+        presets: [
+            ['es2015', {modules: false}]
+        ]
+    });
+});
