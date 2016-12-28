@@ -104,10 +104,17 @@ test('when giving options to preset', t => {
 
 test('using defaults', t => {
     t.deepEqual(fn(null, {
-        'BABEL_TEST_4=true': {
+        'BABEL_TEST_5=true': {
             true: {
                 presets: [
                     ['es2015', {modules: false}]
+                ]
+            }
+        },
+        'BABEL_TEST_6=false': {
+            true: {
+                presets: [
+                    'es2016'
                 ]
             }
         }
@@ -116,5 +123,20 @@ test('using defaults', t => {
         presets: [
             ['es2015', {modules: false}]
         ]
+    });
+});
+
+test('when env variables not set', t => {
+    t.deepEqual(fn(null, {
+        BABEL_TEST_7: {
+            true: {
+                presets: [
+                    'es2015'
+                ]
+            }
+        }
+    }), {
+        plugins: [],
+        presets: []
     });
 });

@@ -11,6 +11,9 @@ module.exports = function (context, options) {
 
             if (config == null) {
                 config = defaultValue;
+                if (config == null) {
+                    return prev;
+                }
             }
 
             return {
