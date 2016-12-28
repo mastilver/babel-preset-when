@@ -2,10 +2,15 @@
 module.exports = function (context, options) {
     return Object.keys(options)
         .reduce((prev, key) => {
-            const config = options[key][process.env[key]];
+            const splittedKey = key.split('=');
+
+            const envVarName = splittedKey[0];
+            const defaultValue = splittedKey[1];
+
+            let config = options[key][process.env[envVarName]];
 
             if (config == null) {
-                return prev;
+                config = defaultValue;
             }
 
             return {

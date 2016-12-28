@@ -101,3 +101,20 @@ test('when giving options to preset', t => {
         ]
     });
 });
+
+test('using defaults', t => {
+    t.deepEqual(fn(null, {
+        'BABEL_TEST_4=true': {
+            true: {
+                presets: [
+                    ['es2015', {modules: false}]
+                ]
+            }
+        }
+    }), {
+        plugins: [],
+        presets: [
+            ['es2015', {modules: false}]
+        ]
+    });
+});
