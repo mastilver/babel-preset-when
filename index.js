@@ -5,7 +5,7 @@ module.exports = function (context, options) {
             const splittedKey = key.split('=');
 
             const envVarName = splittedKey[0];
-            const defaultValue = splittedKey[1];
+            const defaultValue = options[key][splittedKey[1]];
 
             let config = options[key][process.env[envVarName]];
 
