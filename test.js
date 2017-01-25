@@ -1,11 +1,15 @@
 import test from 'ava';
+import cuid from 'cuid';
+
 import fn from './';
 
 test('basic', t => {
-    process.env.BABEL_TEST_1 = 'true';
+    const envVarName = cuid();
+
+    process.env[envVarName] = 'true';
 
     t.deepEqual(fn(null, {
-        BABEL_TEST_1: {
+        [envVarName]: {
             true: {
                 plugins: [
                     'transform-runtime',
@@ -28,11 +32,14 @@ test('basic', t => {
 });
 
 test('combine', t => {
-    process.env.BABEL_TEST_2 = 'true';
-    process.env.BABEL_TEST_3 = 'true';
+    const envVarName1 = cuid();
+    const envVarName2 = cuid();
+
+    process.env[envVarName1] = 'true';
+    process.env[envVarName2] = 'true';
 
     t.deepEqual(fn(null, {
-        BABEL_TEST_2: {
+        [envVarName1]: {
             true: {
                 plugins: [
                     'transform-runtime',
@@ -43,7 +50,7 @@ test('combine', t => {
                 ]
             }
         },
-        BABEL_TEST_3: {
+        [envVarName2]: {
             true: {
                 plugins: [
                     'es3-member-expression-literals',
@@ -71,10 +78,12 @@ test('combine', t => {
 });
 
 test('when given no values', t => {
-    process.env.BABEL_TEST_4 = 'true';
+    const envVarName = cuid();
+
+    process.env[envVarName] = 'true';
 
     t.deepEqual(fn(null, {
-        BABEL_TEST_4: {
+        [envVarName]: {
             true: {}
         }
     }), {
@@ -84,10 +93,12 @@ test('when given no values', t => {
 });
 
 test('when giving options to preset', t => {
-    process.env.BABEL_TEST_5 = 'true';
+    const envVarName = cuid();
+
+    process.env[envVarName] = 'true';
 
     t.deepEqual(fn(null, {
-        BABEL_TEST_4: {
+        [envVarName]: {
             true: {
                 presets: [
                     ['es2015', {modules: false}]
@@ -103,15 +114,18 @@ test('when giving options to preset', t => {
 });
 
 test('using defaults', t => {
+    const envVarName1 = cuid();
+    const envVarName2 = cuid();
+
     t.deepEqual(fn(null, {
-        'BABEL_TEST_6=true': {
+        [`${envVarName1}=true`]: {
             true: {
                 presets: [
                     ['es2015', {modules: false}]
                 ]
             }
         },
-        'BABEL_TEST_7=false': {
+        [`${envVarName2}=false`]: {
             true: {
                 presets: [
                     'es2016'
@@ -127,8 +141,10 @@ test('using defaults', t => {
 });
 
 test('when env variables not set', t => {
+    const envVarName = cuid();
+
     t.deepEqual(fn(null, {
-        BABEL_TEST_8: {
+        [envVarName]: {
             true: {
                 presets: [
                     'es2015'
